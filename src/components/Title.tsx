@@ -19,7 +19,7 @@ function StarSeparator() {
         <g
           className="stroke-current"
           fill="none"
-          fill-rule="evenodd"
+          fillRule="evenodd"
           strokeWidth="10"
         >
           <path d="M121.5 0v242M0 120.5h242M36 35l171 171M36 207 207 36" />
