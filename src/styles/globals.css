@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* HIDE SCROLLBAR */
+  /* Firefox */
+  html {
+    scrollbar-width: none;
+  }
+
+  /* Chrome, Safari, Opera + other WebKit-based browser */
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  html {
+    background: #2e026d
+  }
+}
