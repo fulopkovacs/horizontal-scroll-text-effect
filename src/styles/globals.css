@@ -15,6 +15,26 @@
   }
 
   html {
-    background: #2e026d;
+    /* background: #2e026d; */
+    background: hsla(92, 100%, 78%, 1);
+  }
+}
+
+@layer utilities {
+  .tw-bg-mesh-gradient-1 {
+    /* --mesh-color-1: hsla(64, 100%, 97%, 1) ; */
+    /* --mesh-color-2: hsla(178, 100%, 88%, 1)  */
+    /* --mesh-color-3: hsla(92, 100%, 78%, 1);  */
+    /* --mesh-color-4: hsla(0, 42%, 62%, 1);  */
+
+    background-color: hsla(92, 100%, 78%, 1);
+    background-image: radial-gradient(
+        at 0% 100%,
+        hsla(178, 100%, 88%, 1) 0px,
+        transparent 50%
+      ),
+      radial-gradient(at 15% 16%, hsla(64, 100%, 97%, 1) 0px, transparent 50%),
+      radial-gradient(at 46% 18%, hsla(92, 100%, 78%, 1) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(0, 42%, 62%, 1) 0px, transparent 50%);
   }
 }

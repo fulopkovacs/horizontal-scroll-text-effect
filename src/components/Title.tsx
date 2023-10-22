@@ -36,7 +36,7 @@ export function Title({children}: {children: string}) {
 
   return (
     <motion.div
-      className="text-9xl text-neutral-50 whitespace-nowrap flex items-center gap-3 -ml-10"
+      className="text-9xl text-neutral-950 whitespace-nowrap flex items-center gap-3 -ml-10"
       style={{translateX}}
     >
       {new Array(repeatNTimes).fill(1).map((_, i) => {
