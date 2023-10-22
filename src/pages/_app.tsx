@@ -1,9 +1,17 @@
-import { type AppType } from "next/dist/shared/lib/utils";
+import {type AppType} from 'next/dist/shared/lib/utils'
 
-import "~/styles/globals.css";
+import '~/styles/globals.css'
 
-const MyApp: AppType = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
-};
+import {Inter} from 'next/font/google'
+const inter = Inter({subsets: ['latin'], variable: '--font-inter'})
 
-export default MyApp;
+const MyApp: AppType = ({Component, pageProps}) => {
+  return (
+    <main className={`${inter.variable} font-sans`}>
+      {' '}
+      <Component {...pageProps} />
+    </main>
+  )
+}
+
+export default MyApp
