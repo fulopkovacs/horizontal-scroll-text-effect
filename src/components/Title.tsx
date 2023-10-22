@@ -2,21 +2,30 @@ import {motion, useScroll, useSpring, useTransform} from 'framer-motion'
 import React from 'react'
 
 function StarSeparator() {
+  const {scrollY} = useScroll()
+  const rotateZ = useSpring(scrollY)
+
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-32 aspect-square"
-      viewBox="0 0 242 242"
+    <motion.div
+      style={{
+        rotateZ,
+      }}
     >
-      <g
-        className="stroke-current"
-        fill="none"
-        fill-rule="evenodd"
-        stroke-width="10"
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-32 aspect-square"
+        viewBox="0 0 242 242"
       >
-        <path d="M121.5 0v242M0 120.5h242M36 35l171 171M36 207 207 36" />
-      </g>
-    </svg>
+        <g
+          className="stroke-current"
+          fill="none"
+          fill-rule="evenodd"
+          strokeWidth="10"
+        >
+          <path d="M121.5 0v242M0 120.5h242M36 35l171 171M36 207 207 36" />
+        </g>
+      </svg>
+    </motion.div>
   )
 }
 
@@ -27,7 +36,7 @@ export function Title({children}: {children: string}) {
 
   return (
     <motion.div
-      className="text-9xl text-neutral-50 whitespace-nowrap -ml-10 flex items-center gap-3"
+      className="text-9xl text-neutral-50 whitespace-nowrap flex items-center gap-3 -ml-10"
       style={{translateX}}
     >
       {new Array(repeatNTimes).fill(1).map((_, i) => {
@@ -37,8 +46,8 @@ export function Title({children}: {children: string}) {
 
         return (
           <React.Fragment key={i}>
-            <div>{children}</div>
             <StarSeparator />
+            <div>{children}</div>
           </React.Fragment>
         )
       })}
