@@ -1,19 +1,19 @@
-import {motion} from 'framer-motion'
-import {useLayoutEffect, useMemo, useRef, useState} from 'react'
-import {cn} from '~/lib/utils'
+import { motion } from "framer-motion";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { cn } from "~/lib/utils";
 type CardPropsBase = {
-  title: string
-  repo: string
-  setActive: (a: CardId) => void
-  cardId: CardId
-  activeCardId: number
-}
+  title: string;
+  repo: string;
+  setActive: (a: CardId) => void;
+  cardId: CardId;
+  activeCardId: number;
+};
 
-type CardId = number
+type CardId = number;
 
-const gap = 24
-const inactiveCardWidth = 200
-const activeCardWidth = 600
+const gap = 24;
+const inactiveCardWidth = 200;
+const activeCardWidth = 600;
 
 function GitMergeIcon() {
   return (
@@ -39,89 +39,97 @@ function GitMergeIcon() {
         </g>
       </g>
     </svg>
-  )
+  );
 }
 
-function Card({title, repo, setActive, cardId, activeCardId}: CardPropsBase) {
-  const active = activeCardId === cardId
+function Card({ title, repo, setActive, cardId, activeCardId }: CardPropsBase) {
+  const active = activeCardId === cardId;
 
   return (
     <motion.div
       onClick={() => {
-        setActive(cardId)
+        setActive(cardId);
       }}
       animate={{
-        // width: '200px',
-        // height: '200px',
         width: active ? activeCardWidth : inactiveCardWidth,
-        height: active ? '400px' : '200px',
+        height: active ? "400px" : "200px",
       }}
       className={cn(
-        'w-[200px] h-[200px] rounded-xl border-white border p-6 cursor-pointer flex-shrink-0',
+        "relative h-[200px] w-[200px] flex-shrink-0 cursor-pointer rounded-xl border border-white p-6 transition-colors",
+        active && "text-neutral-950"
       )}
     >
-      <h3 className="text-xl tracking-tight mb-4">{title}</h3>
+      <motion.div
+        animate={{
+          opacity: active ? 100 : 0,
+          scaleX: active ? 1 : 0.8,
+          scaleY: active ? 1 : 0.8,
+        }}
+        className="tw-bg-mesh-gradient-1 absolute left-0 top-0 -z-10 h-full w-full rounded-xl"
+      />
+
+      <h3 className="mb-4 text-xl tracking-tight">{title}</h3>
       <p className="text-sm">{repo}</p>
     </motion.div>
-  )
+  );
 }
 
 export function Carousel() {
-  const [activeCard, setActiveCard] = useState<CardId>(3)
-  const parentRef = useRef<HTMLDivElement>(null)
-  const [parentWidth, setParentWidth] = useState<number>(0)
+  const [activeCard, setActiveCard] = useState<CardId>(3);
+  const parentRef = useRef<HTMLDivElement>(null);
+  const [parentWidth, setParentWidth] = useState<number>(0);
 
-  const desiredDistance = useMemo(() => parentWidth / 2, [parentWidth])
+  const desiredDistance = useMemo(() => parentWidth / 2, [parentWidth]);
 
   const offsetX = useMemo(() => {
     const cardPosition =
-      activeCard * gap + activeCard * inactiveCardWidth + activeCardWidth / 2
-    const distanceFromHalfPoint = cardPosition - desiredDistance
+      activeCard * gap + activeCard * inactiveCardWidth + activeCardWidth / 2;
+    const distanceFromHalfPoint = cardPosition - desiredDistance;
 
-    const offsetX = -distanceFromHalfPoint
+    const offsetX = -distanceFromHalfPoint;
     // activeCard * gap + activeCard * inactiveWidth + activeWidth / 2
 
-    return offsetX
-  }, [desiredDistance, activeCard])
+    return offsetX;
+  }, [desiredDistance, activeCard]);
 
   useLayoutEffect(() => {
     if (parentRef.current) {
-      setParentWidth(parentRef.current.clientWidth)
+      setParentWidth(parentRef.current.clientWidth);
 
       function updateParentWidth() {
-        const parentWidth = parentRef.current?.clientWidth ?? 0
-        setParentWidth(parentWidth)
+        const parentWidth = parentRef.current?.clientWidth ?? 0;
+        setParentWidth(parentWidth);
       }
 
-      window.addEventListener('resize', updateParentWidth)
+      window.addEventListener("resize", updateParentWidth);
 
       return () => {
-        window.removeEventListener('resize', updateParentWidth)
-      }
+        window.removeEventListener("resize", updateParentWidth);
+      };
     }
-  }, [parentRef])
+  }, [parentRef]);
 
   const data = new Array(7).fill({
-    repo: 'repo/repo',
-    title: 'title',
-  }) as Array<{title: string; repo: string}>
+    repo: "repo/repo",
+    title: "title",
+  }) as Array<{ title: string; repo: string }>;
 
   return (
     <div
       id="carousel"
       ref={parentRef}
-      className="relative text-white h-full bg-neutral-800 w-full mx-6 overflow-x-hidden"
+      className="custom-class relative h-full w-full overflow-x-hidden text-white"
     >
       <div
-        className="absolute w-full border-l border-red-400 top-0 left-0 z-40 h-full translate-x-1/2 pointer-events-none"
+        className="pointer-events-none absolute left-0 top-0 z-40 h-full w-full translate-x-1/2 border-l border-red-400"
         id="halfway"
       />
       <motion.div
         animate={{
           translateX: `${offsetX}px`,
         }}
-        style={{gap}}
-        className={`w-full h-full flex items-center`}
+        style={{ gap }}
+        className={`flex h-full w-full items-center`}
       >
         {data.map((a, i) => (
           <Card
@@ -135,5 +143,5 @@ export function Carousel() {
         ))}
       </motion.div>
     </div>
-  )
+  );
 }
