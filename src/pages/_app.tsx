@@ -1,17 +1,18 @@
-import {type AppType} from 'next/dist/shared/lib/utils'
+import { type AppType } from "next/dist/shared/lib/utils";
 
-import '~/styles/globals.css'
+import "~/styles/globals.css";
 
-import {Inter} from 'next/font/google'
-const inter = Inter({subsets: ['latin'], variable: '--font-inter'})
+// import { GeistSans } from "geist/font/sans";
+// import { GeistMono } from "geist/font/mono";
+import { GeistMono, GeistSans } from "geist/font";
 
-const MyApp: AppType = ({Component, pageProps}) => {
+const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <main className={`${inter.variable} font-sans`}>
-      {' '}
+    <main className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}>
+      {" "}
       <Component {...pageProps} />
     </main>
-  )
-}
+  );
+};
 
-export default MyApp
+export default MyApp;

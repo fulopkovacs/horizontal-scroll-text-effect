@@ -16,7 +16,8 @@
 
   html {
     /* background: #2e026d; */
-    background: hsla(92, 100%, 78%, 1);
+    /* background: hsla(92, 100%, 78%, 1); */
+    @apply bg-gray1;
   }
 }
 
