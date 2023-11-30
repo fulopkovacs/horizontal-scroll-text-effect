@@ -1,8 +1,20 @@
 import { ReactNode } from "react";
+import { cn } from "~/lib/utils";
 
-export function Section({ children }: { children: ReactNode }) {
+export function Section({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <div className="mx-6 bg-gray3 text-gray12 sm:mx-auto sm:max-w-xl md:max-w-2xl lg:max-w-4xl">
+    <div
+      className={cn(
+        "mx-6 text-gray12 sm:mx-auto sm:max-w-xl md:max-w-2xl lg:max-w-4xl",
+        className
+      )}
+    >
       {children}
     </div>
   );
