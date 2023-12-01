@@ -1,5 +1,5 @@
 import { Section } from "~/components/Section";
-import { Title } from "~/components/typography";
+import { SubHeading, Title } from "~/components/typography";
 import { twitterLink } from "~/lib/constants";
 
 export default function Page() {
@@ -20,6 +20,12 @@ export default function Page() {
             <Title className="underline">say hi on X (Twitter)</Title>
           </a>
         </div>
+      </Section>
+      <Section className="mt-96">
+        <Title>#opensource</Title>
+        <SubHeading className="mt-6">
+          I contribute to open-source from time to time.
+        </SubHeading>
       </Section>
     </div>
   );

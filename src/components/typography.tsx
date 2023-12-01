@@ -19,3 +19,17 @@ export function Title({
     </p>
   );
 }
+
+export function SubHeading({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <p className={cn("text-2xl font-medium tracking-tight", className)}>
+      {children}
+    </p>
+  );
+}
