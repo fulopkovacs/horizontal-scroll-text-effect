@@ -33,3 +33,34 @@ export function SubHeading({
     </p>
   );
 }
+
+export function CardTitle({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <span className={cn("text-2xl font-semibold tracking-tight", className)}>
+      {children}
+    </span>
+  );
+}
+
+export function RepoTitle({ children }: { children: string }) {
+  return (
+    <a
+      href={`https://github.com/${children}`}
+      target="_blank"
+      className="flex items-center gap-3 text-sm font-medium text-gray11"
+    >
+      {children}
+      <img
+        src="/external-link.svg"
+        alt=""
+        className="block aspect-square h-3"
+      />
+    </a>
+  );
+}
