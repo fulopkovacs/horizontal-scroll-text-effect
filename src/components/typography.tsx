@@ -11,7 +11,7 @@ export function Title({
   return (
     <p
       className={cn(
-        "text-5xl font-medium tracking-tight text-gray12",
+        "text-5xl font-medium tracking-tighter text-gray12",
         className
       )}
     >
